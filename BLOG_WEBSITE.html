@@ -297,21 +297,32 @@ var datetime = "Last Sync: " + currentdate.getDay() + "/" + currentdate.getMonth
 
 <!-- Contact form -->
     <div class="container-fluid">
-        <form id="form1" name="form" onsubmit="popup()" method="post" align="center"
+        <form id="form1" name="google-sheet" onsubmit="popup()" method="post" align="center"
             style="font-family: Verdana, Geneva, Tahoma, sans-serif;color: rgb(0, 0, 0);background-image: url(https://swall.teahub.io/photos/small/313-3132029_linkedin-wallpaper-wallpapersafari-background-image-for-form-in.jpg);background-repeat: no-repeat;background-size:100% 100%;">
             <p style="font-size: 40px;">Write Here!</p>
             <p style="text-decoration: underline;">If any Query, Suggestions, Credits <br>Send a message to team!</p>
-            <label>Your Name:</label><br><input type="text" name="fname" autocomplete="off" required><br><br>
+            <label>Your Name:</label><br><input type="text" name="name" autocomplete="off" required><br><br>
             <label>Gmail:</label><br><input type="email" name="mail" size="28"autocomplete="off"  required><br><br>
             <label>Your message:</label><br><input name="msg" id="msg" type="text" autocomplete="off" size="20" height="50"
                required><br><br>
-            <input type="submit" id="send" value="submit"
-                style="border-style:solid;background-color: white;border-radius: 20px;padding: 5px 40px;margin-bottom: 30px;border: 1px;" href="mailto:danghiabhinav15@gmail.com">
+            <input type="submit" id="send" name="submit"
+                style="border-style:solid;background-color: white;border-radius: 20px;padding: 5px 40px;margin-bottom: 30px;border: 1px;">
         </form>
 
 <!-- Footer section -->
         <a href="#Top">go to TOP</a>
     </div>
+	      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxK8O_C-_XOdfyqZGr54y2oRyyBZDKYzU3bYt11j4LWwHPEl4HY5_eMYA8n_f0DI9sZ/exec'
+        const form = document.forms['google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 
    
 </body>
